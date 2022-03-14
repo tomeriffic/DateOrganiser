@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "3B2F9D5B-A0E3-4089-9A63-21E76A6BC13B"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E8347305-CDB7-4F8E-AB31-439255E78B7F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LadsOrganiser/CreateEventView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EA35D19D-6207-4496-9C6A-F5FFF5B9FC9B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LadsOrganiser/Utils.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "fetchingContacts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0A5E0708-E6D8-4FF1-AF1F-4358720E4AAC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LadsOrganiserTests/LadsOrganiserTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "testGenerateDateListCreatesAllRequriedDates()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "31AF6751-404F-4486-B17E-9BAB0AA48AC5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LadsOrganiserTests/LadsOrganiserTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "testGenerateDateListCreatesAllRequriedDates()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "31AF6751-404F-4486-B17E-9BAB0AA48AC5 - 8406c6e719bc0ad4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LadsOrganiserTests.LadsOrganiserTests.testGenerateDateListCreatesAllRequriedDates() -&gt; ()"
+                  moduleName = "LadsOrganiserTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tomaspilvelis/Desktop/LadsOrganiser/LadsOrganiserTests/LadsOrganiserTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "445">
+               </Location>
+               <Location
+                  uuid = "31AF6751-404F-4486-B17E-9BAB0AA48AC5 - 8406c6e719bc0ad4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LadsOrganiserTests.LadsOrganiserTests.testGenerateDateListCreatesAllRequriedDates() -&gt; ()"
+                  moduleName = "LadsOrganiserTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tomaspilvelis/Desktop/LadsOrganiser/LadsOrganiserTests/LadsOrganiserTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "464">
+               </Location>
+               <Location
+                  uuid = "31AF6751-404F-4486-B17E-9BAB0AA48AC5 - 8406c6e719bc0ad4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LadsOrganiserTests.LadsOrganiserTests.testGenerateDateListCreatesAllRequriedDates() -&gt; ()"
+                  moduleName = "LadsOrganiserTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tomaspilvelis/Desktop/LadsOrganiser/LadsOrganiserTests/LadsOrganiserTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "257">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1837E9B9-A473-4E21-A185-203C943BB944"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LadsOrganiser/Views/DateSelectionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8C4FAC1D-A2BE-4E24-973D-BD4F158C6254"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LadsOrganiserTests/LadsOrganiserTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "testGenerateDateListCreatesAllRequriedDates2()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
