@@ -15,7 +15,7 @@
 		1BCB24F827DD1120009826E8 /* LadsOrganiserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB24F727DD1120009826E8 /* LadsOrganiserUITests.swift */; };
 		1BCB24FA27DD1120009826E8 /* LadsOrganiserUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB24F927DD1120009826E8 /* LadsOrganiserUITestsLaunchTests.swift */; };
 		1BCB250727DD1A28009826E8 /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB250627DD1A28009826E8 /* CreateEventView.swift */; };
-		1BCB250927DD61BC009826E8 /* DateSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB250827DD61BC009826E8 /* DateSelectionView.swift */; };
+		1BCB250927DD61BC009826E8 /* EventBallotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB250827DD61BC009826E8 /* EventBallotView.swift */; };
 		1BCB250B27DD7272009826E8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB250A27DD7272009826E8 /* Utils.swift */; };
 		1BCB250E27DE236A009826E8 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB250D27DE236A009826E8 /* ContactView.swift */; };
 		1BCB251027DE3DFA009826E8 /* ContactRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB250F27DE3DFA009826E8 /* ContactRowView.swift */; };
@@ -54,7 +54,7 @@
 		1BCB24F727DD1120009826E8 /* LadsOrganiserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LadsOrganiserUITests.swift; sourceTree = "<group>"; };
 		1BCB24F927DD1120009826E8 /* LadsOrganiserUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LadsOrganiserUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1BCB250627DD1A28009826E8 /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
-		1BCB250827DD61BC009826E8 /* DateSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionView.swift; sourceTree = "<group>"; };
+		1BCB250827DD61BC009826E8 /* EventBallotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBallotView.swift; sourceTree = "<group>"; };
 		1BCB250A27DD7272009826E8 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		1BCB250C27DE109D009826E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1BCB250D27DE236A009826E8 /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 				1BCB250627DD1A28009826E8 /* CreateEventView.swift */,
 				1BCB250F27DE3DFA009826E8 /* ContactRowView.swift */,
 				1BCB250D27DE236A009826E8 /* ContactView.swift */,
-				1BCB250827DD61BC009826E8 /* DateSelectionView.swift */,
+				1BCB250827DD61BC009826E8 /* EventBallotView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -301,7 +301,7 @@
 				1BCB250727DD1A28009826E8 /* CreateEventView.swift in Sources */,
 				1BCB251C27DF795D009826E8 /* DataController.swift in Sources */,
 				1BCB251427DE50AA009826E8 /* EventState.swift in Sources */,
-				1BCB250927DD61BC009826E8 /* DateSelectionView.swift in Sources */,
+				1BCB250927DD61BC009826E8 /* EventBallotView.swift in Sources */,
 				1BCB251A27DF785A009826E8 /* DataStore.xcdatamodeld in Sources */,
 				1BCB24DF27DD111E009826E8 /* ContentView.swift in Sources */,
 				1BCB24DD27DD111E009826E8 /* LadsOrganiserApp.swift in Sources */,
