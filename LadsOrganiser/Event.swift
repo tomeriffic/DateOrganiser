@@ -9,7 +9,7 @@ import Foundation
 
 struct Event: Hashable {
     let id              : UUID          = UUID()
-    var title           : String        = "Untitled"
+    var title           : String        = String()
     var description     : String        = String()
     var state           : EventState    = .Unconfirmed
     var maxParticipants : Int           = 0

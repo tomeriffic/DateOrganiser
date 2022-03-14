@@ -34,7 +34,15 @@ class FetchContacts {
         }
         return contacts
     }
-    
+}
+
+
+func validateDatesValid(fromDate: Date, toDate: Date) -> Bool{
+    if fromDate >= toDate {
+        print("FAILED")
+        return false
+    }
+    return true
 }
 
 

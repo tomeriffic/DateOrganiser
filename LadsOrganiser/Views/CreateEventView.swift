@@ -8,15 +8,6 @@
 import SwiftUI
 import Contacts
 
-
-func validateDatesValid(fromDate: Date, toDate: Date) -> Bool{
-    if fromDate >= toDate {
-        print("FAILED")
-        return false
-    }
-    return true
-}
-
 struct TitleCreateNewEvent: View {
     var body: some View {
         HStack {
@@ -30,9 +21,7 @@ struct TitleCreateNewEvent: View {
 
 struct EventForm: View {
     @State private var event: Event = Event()
-
     @State private var isValidDates = true
-    //@State private var isWeekendOnly: Bool = false
 
     var body: some View {
         TextField("Title", text: $event.title)
@@ -111,10 +100,14 @@ struct InviteParticipantsForm: View {
             }
 
         .fullScreenCover(isPresented: $isPresentingContacts){
-            ContactView(contacts: $contacts, searchText: $searchText, showCancelButton: $showCancelButton, isPresentingContacts: $isPresentingContacts, selectedContacts: $selectedContacts)
-            
+            ContactView(
+                contacts: $contacts,
+                searchText: $searchText,
+                showCancelButton: $showCancelButton,
+                isPresentingContacts: $isPresentingContacts,
+                selectedContacts: $selectedContacts
+            )
         }
-        
     }
 }
 
