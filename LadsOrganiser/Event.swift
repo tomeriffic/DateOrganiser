@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Event: Hashable {
-    let id              : UUID          = UUID()
+    var id              : UUID          = UUID()
     var title           : String        = String()
     var description     : String        = String()
     var state           : EventState    = .Unconfirmed
@@ -20,3 +21,4 @@ struct Event: Hashable {
     // Only when state is confirmed there is a selected date
     var selectedDate    : Date          = Date()
 }
+

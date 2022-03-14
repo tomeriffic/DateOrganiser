@@ -112,12 +112,10 @@ struct InviteParticipantsForm: View {
     }
 }
 
-func StoreEvent(event: Event){
-    // Store Event
-}
-
 struct CreateEventView: View {
+    @Environment(\.managedObjectContext) var moc
     @State private var event: Event = Event()
+    @Binding var openClose: Bool
     var body: some View {
         VStack {
             TitleCreateNewEvent()
@@ -125,17 +123,37 @@ struct CreateEventView: View {
                 EventForm(event: $event)
                 InviteParticipantsForm(selectedContacts: $event.participants)
             }
-            Button("Send Invites and Create"){
-                StoreEvent(event: event)
+            HStack{
+                Button {
+                    openClose.toggle()
+                } label: {
+                    Text("Cancel")
+                }.buttonStyle(.bordered)
+                
+                Button("Send Invites and Create"){
+                    StoreEvent(event: event)
+                    openClose.toggle()
+                    
+                }.buttonStyle(.borderedProminent)
             }
             Spacer()
             
         }
     }
+    
+    func StoreEvent(event: Event){
+        let dataStoreEvent = Events(context: moc)
+        dataStoreEvent.id = event.id
+        dataStoreEvent.title = event.title
+        try? moc.save()
+        print("STORE")
+    }
 }
 
 struct CreateEventView_Previews: PreviewProvider {
+    @State static var openClose: Bool = true
     static var previews: some View {
-        CreateEventView()
+        CreateEventView(openClose: $openClose)
+            
     }
 }

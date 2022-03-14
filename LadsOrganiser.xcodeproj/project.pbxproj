@@ -18,9 +18,11 @@
 		1BCB250927DD61BC009826E8 /* DateSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB250827DD61BC009826E8 /* DateSelectionView.swift */; };
 		1BCB250B27DD7272009826E8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB250A27DD7272009826E8 /* Utils.swift */; };
 		1BCB250E27DE236A009826E8 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB250D27DE236A009826E8 /* ContactView.swift */; };
-		1BCB251027DE3DFA009826E8 /* ContactUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB250F27DE3DFA009826E8 /* ContactUtils.swift */; };
+		1BCB251027DE3DFA009826E8 /* ContactRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB250F27DE3DFA009826E8 /* ContactRowView.swift */; };
 		1BCB251227DE4D85009826E8 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB251127DE4D85009826E8 /* Event.swift */; };
 		1BCB251427DE50AA009826E8 /* EventState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB251327DE50AA009826E8 /* EventState.swift */; };
+		1BCB251A27DF785A009826E8 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB251827DF785A009826E8 /* DataStore.xcdatamodeld */; };
+		1BCB251C27DF795D009826E8 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB251B27DF795D009826E8 /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,9 +58,11 @@
 		1BCB250A27DD7272009826E8 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		1BCB250C27DE109D009826E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1BCB250D27DE236A009826E8 /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
-		1BCB250F27DE3DFA009826E8 /* ContactUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUtils.swift; sourceTree = "<group>"; };
+		1BCB250F27DE3DFA009826E8 /* ContactRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRowView.swift; sourceTree = "<group>"; };
 		1BCB251127DE4D85009826E8 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1BCB251327DE50AA009826E8 /* EventState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventState.swift; sourceTree = "<group>"; };
+		1BCB251927DF785A009826E8 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
+		1BCB251B27DF795D009826E8 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 		1BCB24D027DD111E009826E8 = {
 			isa = PBXGroup;
 			children = (
+				1BCB251827DF785A009826E8 /* DataStore.xcdatamodeld */,
 				1BCB24DB27DD111E009826E8 /* LadsOrganiser */,
 				1BCB24EC27DD1120009826E8 /* LadsOrganiserTests */,
 				1BCB24F627DD1120009826E8 /* LadsOrganiserUITests */,
@@ -118,6 +123,7 @@
 				1BCB250A27DD7272009826E8 /* Utils.swift */,
 				1BCB251127DE4D85009826E8 /* Event.swift */,
 				1BCB251327DE50AA009826E8 /* EventState.swift */,
+				1BCB251B27DF795D009826E8 /* DataController.swift */,
 			);
 			path = LadsOrganiser;
 			sourceTree = "<group>";
@@ -151,7 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				1BCB250627DD1A28009826E8 /* CreateEventView.swift */,
-				1BCB250F27DE3DFA009826E8 /* ContactUtils.swift */,
+				1BCB250F27DE3DFA009826E8 /* ContactRowView.swift */,
 				1BCB250D27DE236A009826E8 /* ContactView.swift */,
 				1BCB250827DD61BC009826E8 /* DateSelectionView.swift */,
 			);
@@ -291,10 +297,12 @@
 				1BCB251227DE4D85009826E8 /* Event.swift in Sources */,
 				1BCB250B27DD7272009826E8 /* Utils.swift in Sources */,
 				1BCB250E27DE236A009826E8 /* ContactView.swift in Sources */,
-				1BCB251027DE3DFA009826E8 /* ContactUtils.swift in Sources */,
+				1BCB251027DE3DFA009826E8 /* ContactRowView.swift in Sources */,
 				1BCB250727DD1A28009826E8 /* CreateEventView.swift in Sources */,
+				1BCB251C27DF795D009826E8 /* DataController.swift in Sources */,
 				1BCB251427DE50AA009826E8 /* EventState.swift in Sources */,
 				1BCB250927DD61BC009826E8 /* DateSelectionView.swift in Sources */,
+				1BCB251A27DF785A009826E8 /* DataStore.xcdatamodeld in Sources */,
 				1BCB24DF27DD111E009826E8 /* ContentView.swift in Sources */,
 				1BCB24DD27DD111E009826E8 /* LadsOrganiserApp.swift in Sources */,
 			);
@@ -627,6 +635,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1BCB251827DF785A009826E8 /* DataStore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1BCB251927DF785A009826E8 /* DataStore.xcdatamodel */,
+			);
+			currentVersion = 1BCB251927DF785A009826E8 /* DataStore.xcdatamodel */;
+			path = DataStore.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1BCB24D127DD111E009826E8 /* Project object */;
 }
