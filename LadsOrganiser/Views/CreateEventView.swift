@@ -145,6 +145,8 @@ struct CreateEventView: View {
         let dataStoreEvent = Events(context: moc)
         dataStoreEvent.id = event.id
         dataStoreEvent.title = event.title
+        dataStoreEvent.fromDate = event.fromDate
+        dataStoreEvent.toDate = event.toDate
         try? moc.save()
         print("STORE")
     }
