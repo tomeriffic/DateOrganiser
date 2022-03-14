@@ -20,7 +20,7 @@ struct TitleCreateNewEvent: View {
 }
 
 struct EventForm: View {
-    @State private var event: Event = Event()
+    @Binding var event: Event
     @State private var isValidDates = true
 
     var body: some View {
@@ -52,11 +52,12 @@ struct EventForm: View {
 }
 
 struct InviteParticipantsForm: View {
+    @Binding var selectedContacts: [ContactInfo]
+    
     @State private var contacts = [ContactInfo.init(firstName: "", lastName: "", phoneNumber: nil)]
     @State private var searchText = ""
     @State private var showCancelButton: Bool = true
     @State private var isPresentingContacts = false
-    @State private var selectedContacts: [ContactInfo] = []
     
     func getContacts() {
         DispatchQueue.main.async {
@@ -111,16 +112,21 @@ struct InviteParticipantsForm: View {
     }
 }
 
+func StoreEvent(event: Event){
+    // Store Event
+}
+
 struct CreateEventView: View {
+    @State private var event: Event = Event()
     var body: some View {
         VStack {
             TitleCreateNewEvent()
             Form{
-                EventForm()
-                InviteParticipantsForm()
+                EventForm(event: $event)
+                InviteParticipantsForm(selectedContacts: $event.participants)
             }
             Button("Send Invites and Create"){
-                
+                StoreEvent(event: event)
             }
             Spacer()
             
