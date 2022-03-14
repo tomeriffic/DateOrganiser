@@ -48,6 +48,7 @@ struct ColumnNames: View {
 struct EventRowEntry: View {
     private var event: Event
     private var df = DateFormatter()
+    @State private var isPresentingVoteView: Bool = false
     @FetchRequest(sortDescriptors: []) var newEvents: FetchedResults<Events>
     @Environment(\.managedObjectContext) var moc
     
@@ -88,11 +89,19 @@ struct EventRowEntry: View {
             }
             Menu("..."){
                 Button{
+                    isPresentingVoteView.toggle()
+                }label: {
+                    Label("Vote", systemImage: "square.and.pencil").foregroundColor(.black)
+                }
+                Button{
                     deleteEventRow(id: event.id)
                 }label: {
                     Label("Delete", systemImage: "trash").foregroundColor(.red)
                 }
             }
+        }
+        .fullScreenCover(isPresented: $isPresentingVoteView){
+            DateSelectionView()
         }
     }
 }

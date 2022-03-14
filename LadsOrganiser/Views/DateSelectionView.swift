@@ -102,25 +102,28 @@ struct TitleVote: View {
 }
 
 struct EventBallotView: View {
+    @Binding var isBallotPresented: Bool
     private var options: [Date] = []
     private let displayFormat = DateFormatter()
-    var from: Date
-    var to: Date
+    private var from: Date = Date()
+    private var to: Date = Date()
     
-    init(){
+    init(toggleShowBallot: Binding<Bool>){
         displayFormat.dateFormat = DATE_FORMAT
         let formatter = DateFormatter()
         formatter.dateFormat = DATE_FORMAT_T
         from = formatter.date(from: "20/05/2022 15:00") ?? Date.now
         to = formatter.date(from: "23/05/2022 15:00") ?? Date.now
         options = generateDateList(from: from, to: to)
+        self._isBallotPresented = toggleShowBallot
     }
     
-    init(from: Date, to: Date){
+    init(from: Date, to: Date, toggleShowBallot: Binding<Bool>){
         displayFormat.dateFormat = DATE_FORMAT
         self.from = from
         self.to = to
         options = generateDateList(from: from, to: to)
+        self._isBallotPresented = toggleShowBallot
     }
     var body: some View {
         VStack {
@@ -135,12 +138,18 @@ struct EventBallotView: View {
                     )
                 }
             }
+            Button {
+                isBallotPresented.toggle()
+            } label: {
+                Text("Cancel")
+            }
         }
     }
 }
 
-struct DateSelectionView_Previews: PreviewProvider {
+struct EventBallotView_Previews: PreviewProvider {
+    @State static var isBallotPresented: Bool = true
     static var previews: some View {
-        EventBallotView()
+        EventBallotView(toggleShowBallot: $isBallotPresented)
     }
 }
