@@ -105,24 +105,12 @@ struct EventBallotView: View {
     @Binding var isBallotPresented: Bool
     private var options: [Date] = []
     private let displayFormat = DateFormatter()
-    private var from: Date = Date()
-    private var to: Date = Date()
+    private var event: Event = Event()
     
-    init(toggleShowBallot: Binding<Bool>){
+    init(event: Event, toggleShowBallot: Binding<Bool>){
         displayFormat.dateFormat = DATE_FORMAT
-        let formatter = DateFormatter()
-        formatter.dateFormat = DATE_FORMAT_T
-        from = formatter.date(from: "20/05/2022 15:00") ?? Date.now
-        to = formatter.date(from: "23/05/2022 15:00") ?? Date.now
-        options = generateDateList(from: from, to: to)
-        self._isBallotPresented = toggleShowBallot
-    }
-    
-    init(from: Date, to: Date, toggleShowBallot: Binding<Bool>){
-        displayFormat.dateFormat = DATE_FORMAT
-        self.from = from
-        self.to = to
-        options = generateDateList(from: from, to: to)
+        self.event = event
+        options = generateDateList(from: event.fromDate, to: event.toDate)
         self._isBallotPresented = toggleShowBallot
     }
     var body: some View {
@@ -149,7 +137,8 @@ struct EventBallotView: View {
 
 struct EventBallotView_Previews: PreviewProvider {
     @State static var isBallotPresented: Bool = true
+    static var event: Event = Event()
     static var previews: some View {
-        EventBallotView(toggleShowBallot: $isBallotPresented)
+        EventBallotView(event: event, toggleShowBallot: $isBallotPresented)
     }
 }

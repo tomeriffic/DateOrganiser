@@ -101,7 +101,7 @@ struct EventRowEntry: View {
             }
         }
         .fullScreenCover(isPresented: $isPresentingVoteView){
-            DateSelectionView()
+            EventBallotView(event: event, toggleShowBallot: $isPresentingVoteView)
         }
     }
 }
