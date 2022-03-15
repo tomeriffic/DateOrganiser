@@ -58,14 +58,15 @@ struct VoteContext {
 
 struct DateEntry: View {
     var date: String = "0/0/0000"
-    var votedValue: UInt8
+    var index: UInt8
     @State var ctxt: VoteContext
-    
-    init(date: String, votedValue: UInt8){
+    var selectionList: GetVotes
+
+    init(date: String, index: UInt8, selectionList: GetVotes){
         self.date = date
-        self.votedValue = votedValue
-        self.ctxt = VoteContext(vote: votedValue)
-        print(ctxt.isNoShowing)
+        self.index = index
+        self.ctxt = VoteContext(vote: selectionList.items[Int(index)])
+        self.selectionList = selectionList
     }
 
     
@@ -90,6 +91,8 @@ struct DateEntry: View {
                     ctxt.yesCount += 1
                     ctxt.isMaybeShowing.toggle(); ctxt.isNoShowing.toggle()
                     ctxt.isYesDisabled.toggle()
+                    selectionList.update(index: Int(index), value: 2)
+                    print(selectionList.items)
                 }.disabled(ctxt.isYesDisabled)
             }
             if ctxt.isMaybeShowing {
@@ -97,6 +100,7 @@ struct DateEntry: View {
                     ctxt.maybeCount += 1
                     ctxt.isYesShowing.toggle(); ctxt.isNoShowing.toggle()
                     ctxt.isMaybeDisabled.toggle()
+                    selectionList.update(index: Int(index), value: 1)
                 }.disabled(ctxt.isMaybeDisabled)
             }
             if ctxt.isNoShowing {
@@ -104,6 +108,7 @@ struct DateEntry: View {
                     ctxt.noCount += 1
                     ctxt.isYesShowing.toggle(); ctxt.isMaybeShowing.toggle()
                     ctxt.isNoDisabled.toggle()
+                    selectionList.update(index: Int(index), value: 3)
                 }.disabled(ctxt.isNoDisabled)
             }
         }
@@ -134,6 +139,21 @@ class GetVotes: ObservableObject {
     init(values: [UInt8]) {
         items = values
     }
+    
+    func update(index: Int, value: UInt8){
+        items[index] = value
+    }
+    
+    func toString() -> String{
+        return items.description
+    }
+    
+    func fromString(votes: String){
+        let sArray = votes
+                      .trimmingCharacters(in: CharacterSet(charactersIn: "[]"))
+                      .components(separatedBy:",").map({ UInt8($0)! })
+        items = sArray
+    }
 }
 
 struct EventBallotView: View {
@@ -145,6 +165,7 @@ struct EventBallotView: View {
     @FetchRequest(sortDescriptors: []) var votes: FetchedResults<Votes>
     @Environment(\.managedObjectContext) var moc
     
+
     init(event: Event, toggleShowBallot: Binding<Bool>){
         displayFormat.dateFormat = DATE_FORMAT
         self.event = event
@@ -154,25 +175,30 @@ struct EventBallotView: View {
         } else {
             options = generateDateList(from: event.fromDate, to: event.toDate)
         }
-        selectionList = GetVotes(values: Array(repeating: UInt8(2), count: options.count))
+        selectionList = GetVotes(values: Array(repeating: UInt8(0), count: options.count))
     }
     
-    func StoreVote(){
+    func StoreVote(votesList: GetVotes){
+        print(votesList)
+        
         let dataStoreEvent = Votes(context: moc)
         dataStoreEvent.id = UUID()
         dataStoreEvent.eventId = event.id
-
-        try? moc.save()
+        dataStoreEvent.vote = votesList.toString()
+        print(dataStoreEvent.vote)
+        //try? moc.save()
     }
+
     
     var body: some View {
         VStack {
             TitleVote(title:event.title)
             List {
-                ForEach(Array(zip(options, selectionList.items)), id: \.0){ option in
+                ForEach(Array(zip(options, Array(0...selectionList.items.count))), id: \.0){ option in
                     DateEntry(
                         date: displayFormat.string(from: option.0),
-                        votedValue: option.1
+                        index: UInt8(option.1),
+                        selectionList: selectionList
                     )
                 }
             }
@@ -187,7 +213,7 @@ struct EventBallotView: View {
                 Spacer()
                 Button {
                     isBallotPresented.toggle()
-                    StoreVote()
+                    StoreVote(votesList: selectionList)
                 } label: {
                     Text("Submit")
                 }.buttonStyle(.borderedProminent)
