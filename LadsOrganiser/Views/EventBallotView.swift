@@ -118,7 +118,12 @@ struct EventBallotView: View {
         } else {
             options = generateDateList(from: event.fromDate, to: event.toDate)
         }
-        selectionList = Array(repeating: 0, count: options.count)
+        let initArray = Array(repeating: UInt8(0), count: options.count)
+        print(initArray)
+        selectionList.append(contentsOf: initArray)
+        print(".")
+        //selectionList = Array(repeating: UInt8(0), count: options.count)
+        print(selectionList)
     }
     
     func StoreVote(){

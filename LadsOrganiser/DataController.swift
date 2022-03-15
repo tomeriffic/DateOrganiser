@@ -10,7 +10,7 @@ import CoreData
 
 
 class DataController: ObservableObject {
-    let container = NSPersistentContainer(name: "DataStore")
+    let container = NSPersistentContainer(name: "LocalStore")
     
     init() {
         container.loadPersistentStores { description, error in

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B89467827E0FABB00946E99 /* LocalStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B89467627E0FABB00946E99 /* LocalStore.xcdatamodeld */; };
 		1BCB24DD27DD111E009826E8 /* LadsOrganiserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB24DC27DD111E009826E8 /* LadsOrganiserApp.swift */; };
 		1BCB24DF27DD111E009826E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB24DE27DD111E009826E8 /* ContentView.swift */; };
 		1BCB24E127DD1120009826E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BCB24E027DD1120009826E8 /* Assets.xcassets */; };
@@ -21,7 +22,6 @@
 		1BCB251027DE3DFA009826E8 /* ContactRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB250F27DE3DFA009826E8 /* ContactRowView.swift */; };
 		1BCB251227DE4D85009826E8 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB251127DE4D85009826E8 /* Event.swift */; };
 		1BCB251427DE50AA009826E8 /* EventState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB251327DE50AA009826E8 /* EventState.swift */; };
-		1BCB251A27DF785A009826E8 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB251827DF785A009826E8 /* DataStore.xcdatamodeld */; };
 		1BCB251C27DF795D009826E8 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB251B27DF795D009826E8 /* DataController.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B89467727E0FABB00946E99 /* LocalStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalStore.xcdatamodel; sourceTree = "<group>"; };
 		1BCB24D927DD111E009826E8 /* LadsOrganiser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LadsOrganiser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BCB24DC27DD111E009826E8 /* LadsOrganiserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LadsOrganiserApp.swift; sourceTree = "<group>"; };
 		1BCB24DE27DD111E009826E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,7 +62,6 @@
 		1BCB250F27DE3DFA009826E8 /* ContactRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRowView.swift; sourceTree = "<group>"; };
 		1BCB251127DE4D85009826E8 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1BCB251327DE50AA009826E8 /* EventState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventState.swift; sourceTree = "<group>"; };
-		1BCB251927DF785A009826E8 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
 		1BCB251B27DF795D009826E8 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,7 +93,7 @@
 		1BCB24D027DD111E009826E8 = {
 			isa = PBXGroup;
 			children = (
-				1BCB251827DF785A009826E8 /* DataStore.xcdatamodeld */,
+				1B89467627E0FABB00946E99 /* LocalStore.xcdatamodeld */,
 				1BCB24DB27DD111E009826E8 /* LadsOrganiser */,
 				1BCB24EC27DD1120009826E8 /* LadsOrganiserTests */,
 				1BCB24F627DD1120009826E8 /* LadsOrganiserUITests */,
@@ -302,9 +302,9 @@
 				1BCB251C27DF795D009826E8 /* DataController.swift in Sources */,
 				1BCB251427DE50AA009826E8 /* EventState.swift in Sources */,
 				1BCB250927DD61BC009826E8 /* EventBallotView.swift in Sources */,
-				1BCB251A27DF785A009826E8 /* DataStore.xcdatamodeld in Sources */,
 				1BCB24DF27DD111E009826E8 /* ContentView.swift in Sources */,
 				1BCB24DD27DD111E009826E8 /* LadsOrganiserApp.swift in Sources */,
+				1B89467827E0FABB00946E99 /* LocalStore.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,13 +637,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		1BCB251827DF785A009826E8 /* DataStore.xcdatamodeld */ = {
+		1B89467627E0FABB00946E99 /* LocalStore.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				1BCB251927DF785A009826E8 /* DataStore.xcdatamodel */,
+				1B89467727E0FABB00946E99 /* LocalStore.xcdatamodel */,
 			);
-			currentVersion = 1BCB251927DF785A009826E8 /* DataStore.xcdatamodel */;
-			path = DataStore.xcdatamodeld;
+			currentVersion = 1B89467727E0FABB00946E99 /* LocalStore.xcdatamodel */;
+			path = LocalStore.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
