@@ -35,11 +35,39 @@ struct VoteContext {
     var isNoDisabled: Bool = false
     var isMaybeDisabled: Bool = false
     
+    init(){}
+    
+    init(vote: UInt8){
+        if vote == 0 {
+            
+        }
+        else if vote == 1 {
+            isYesShowing = false
+            isNoShowing = false
+        }
+        else if vote == 2 {
+            isMaybeShowing = false
+            isNoShowing = false
+        }
+        else if vote == 3 {
+            isYesShowing = false
+            isMaybeShowing = false
+        }
+    }
 }
 
 struct DateEntry: View {
     var date: String = "0/0/0000"
-    @State var ctxt: VoteContext = VoteContext()
+    var votedValue: UInt8
+    @State var ctxt: VoteContext
+    
+    init(date: String, votedValue: UInt8){
+        self.date = date
+        self.votedValue = votedValue
+        self.ctxt = VoteContext(vote: votedValue)
+        print(ctxt.isNoShowing)
+    }
+
     
     var body: some View {
         HStack {
@@ -100,12 +128,20 @@ struct TitleVote: View {
     }
 }
 
+class GetVotes: ObservableObject {
+    @Published var items = [UInt8]()
+
+    init(values: [UInt8]) {
+        items = values
+    }
+}
+
 struct EventBallotView: View {
     @Binding var isBallotPresented: Bool
     private var options: [Date] = []
     private let displayFormat = DateFormatter()
     private var event: Event = Event()
-    @State private var selectionList: [UInt8] = []
+    @ObservedObject var selectionList : GetVotes
     @FetchRequest(sortDescriptors: []) var votes: FetchedResults<Votes>
     @Environment(\.managedObjectContext) var moc
     
@@ -118,12 +154,7 @@ struct EventBallotView: View {
         } else {
             options = generateDateList(from: event.fromDate, to: event.toDate)
         }
-        let initArray = Array(repeating: UInt8(0), count: options.count)
-        print(initArray)
-        selectionList.append(contentsOf: initArray)
-        print(".")
-        //selectionList = Array(repeating: UInt8(0), count: options.count)
-        print(selectionList)
+        selectionList = GetVotes(values: Array(repeating: UInt8(2), count: options.count))
     }
     
     func StoreVote(){
@@ -138,8 +169,11 @@ struct EventBallotView: View {
         VStack {
             TitleVote(title:event.title)
             List {
-                ForEach(options, id: \.self){ option in
-                    DateEntry(date: displayFormat.string(from: option))
+                ForEach(Array(zip(options, selectionList.items)), id: \.0){ option in
+                    DateEntry(
+                        date: displayFormat.string(from: option.0),
+                        votedValue: option.1
+                    )
                 }
             }
             
