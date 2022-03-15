@@ -7,20 +7,15 @@
 
 import SwiftUI
 
-struct Vote {
-    var user: String
-    var selectedDates: [Date]
-}
-
 struct SelectorButton: View {
     var state: Int8 = 0
     var body: some View {
         switch state {
-        case 0:
-            return Label("", systemImage: "questionmark").foregroundColor(.blue)
         case 1:
-            return Label("", systemImage: "hand.thumbsup.fill").foregroundColor(.green)
+            return Label("", systemImage: "questionmark").foregroundColor(.blue)
         case 2:
+            return Label("", systemImage: "hand.thumbsup.fill").foregroundColor(.green)
+        case 3:
             return Label("", systemImage: "hand.thumbsdown.fill").foregroundColor(.red)
         default:
             return Label("Error", systemImage: "exclamationmark.icloud").foregroundColor(.red)
@@ -28,17 +23,23 @@ struct SelectorButton: View {
     }
 }
 
+struct VoteContext {
+    //var date: String = "0/0/0000"
+    var yesCount: Int8 = 0
+    var maybeCount: Int8 = 0
+    var noCount: Int8 = 0
+    var isYesShowing: Bool = true
+    var isNoShowing: Bool = true
+    var isMaybeShowing: Bool = true
+    var isYesDisabled: Bool = false
+    var isNoDisabled: Bool = false
+    var isMaybeDisabled: Bool = false
+    
+}
+
 struct DateEntry: View {
     var date: String = "0/0/0000"
-    @State var yesCount: Int8 = 0
-    @State var maybeCount: Int8 = 0
-    @State var noCount: Int8 = 0
-    @State var isYesShowing: Bool = true
-    @State var isNoShowing: Bool = true
-    @State var isMaybeShowing: Bool = true
-    @State var isYesDisabled: Bool = false
-    @State var isNoDisabled: Bool = false
-    @State var isMaybeDisabled: Bool = false
+    @State var ctxt: VoteContext = VoteContext()
     
     var body: some View {
         HStack {
@@ -49,46 +50,34 @@ struct DateEntry: View {
                     
                 }
                 HStack {
-                    Text("Yes: \(yesCount)").font(.footnote)
-                    Text("Maybe: \(maybeCount)").font(.footnote)
-                    Text("No: \(noCount)").font(.footnote)
+                    Text("Yes: \(ctxt.yesCount)").font(.footnote)
+                    Text("Maybe: \(ctxt.maybeCount)").font(.footnote)
+                    Text("No: \(ctxt.noCount)").font(.footnote)
                     Spacer()
                 }
                 
             }
-            if isYesShowing {
-                Button {} label: {SelectorButton(state:1)} .onTapGesture{
-                    yesCount += 1
-                    isMaybeShowing.toggle(); isNoShowing.toggle()
-                    isYesDisabled.toggle()
-                }.disabled(isYesDisabled)
+            if ctxt.isYesShowing {
+                Button {} label: {SelectorButton(state:2)} .onTapGesture{
+                    ctxt.yesCount += 1
+                    ctxt.isMaybeShowing.toggle(); ctxt.isNoShowing.toggle()
+                    ctxt.isYesDisabled.toggle()
+                }.disabled(ctxt.isYesDisabled)
             }
-            if isMaybeShowing {
-                Button {} label: {SelectorButton(state:0)} .onTapGesture {
-                    maybeCount += 1
-                    isYesShowing.toggle(); isNoShowing.toggle()
-                    isMaybeDisabled.toggle()
-                }.disabled(isMaybeDisabled)
+            if ctxt.isMaybeShowing {
+                Button {} label: {SelectorButton(state:1)} .onTapGesture {
+                    ctxt.maybeCount += 1
+                    ctxt.isYesShowing.toggle(); ctxt.isNoShowing.toggle()
+                    ctxt.isMaybeDisabled.toggle()
+                }.disabled(ctxt.isMaybeDisabled)
             }
-            if isNoShowing {
-                Button {} label: {SelectorButton(state:2)} .onTapGesture {
-                    noCount += 1
-                    isYesShowing.toggle(); isMaybeShowing.toggle()
-                    isNoDisabled.toggle()
-                }.disabled(isNoDisabled)
+            if ctxt.isNoShowing {
+                Button {} label: {SelectorButton(state:3)} .onTapGesture {
+                    ctxt.noCount += 1
+                    ctxt.isYesShowing.toggle(); ctxt.isMaybeShowing.toggle()
+                    ctxt.isNoDisabled.toggle()
+                }.disabled(ctxt.isNoDisabled)
             }
-        }
-    }
-}
-
-struct DateSelectionView: View {
-    var dates: [Date]?
-    var body: some View {
-        Form {
-            DateEntry()
-            DateEntry()
-            DateEntry()
-        
         }
     }
 }
@@ -116,31 +105,38 @@ struct EventBallotView: View {
     private var options: [Date] = []
     private let displayFormat = DateFormatter()
     private var event: Event = Event()
+    @State private var selectionList: [UInt8] = []
+    @FetchRequest(sortDescriptors: []) var votes: FetchedResults<Votes>
+    @Environment(\.managedObjectContext) var moc
     
     init(event: Event, toggleShowBallot: Binding<Bool>){
         displayFormat.dateFormat = DATE_FORMAT
         self.event = event
+        self._isBallotPresented = toggleShowBallot
         if event.isWeekendOnly{
             options = generateDateList(from: event.fromDate, to: event.toDate, isWeekendsOnly: event.isWeekendOnly)
         } else {
             options = generateDateList(from: event.fromDate, to: event.toDate)
         }
-        self._isBallotPresented = toggleShowBallot
+        selectionList = Array(repeating: 0, count: options.count)
     }
+    
+    func StoreVote(){
+        let dataStoreEvent = Votes(context: moc)
+        dataStoreEvent.id = UUID()
+        dataStoreEvent.eventId = event.id
+
+        try? moc.save()
+    }
+    
     var body: some View {
         VStack {
             TitleVote(title:event.title)
             List {
                 ForEach(options, id: \.self){ option in
-                    DateEntry(
-                        date: displayFormat.string(from: option),
-                        yesCount: 0,
-                        maybeCount: 0,
-                        noCount: 0
-                    )
+                    DateEntry(date: displayFormat.string(from: option))
                 }
             }
-            
             
             HStack {
                 Spacer()
@@ -152,6 +148,7 @@ struct EventBallotView: View {
                 Spacer()
                 Button {
                     isBallotPresented.toggle()
+                    StoreVote()
                 } label: {
                     Text("Submit")
                 }.buttonStyle(.borderedProminent)
