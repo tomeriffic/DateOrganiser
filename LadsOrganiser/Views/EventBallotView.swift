@@ -36,6 +36,9 @@ struct DateEntry: View {
     @State var isYesShowing: Bool = true
     @State var isNoShowing: Bool = true
     @State var isMaybeShowing: Bool = true
+    @State var isYesDisabled: Bool = false
+    @State var isNoDisabled: Bool = false
+    @State var isMaybeDisabled: Bool = false
     
     var body: some View {
         HStack {
@@ -54,25 +57,25 @@ struct DateEntry: View {
                 
             }
             if isYesShowing {
-                Button {} label: {SelectorButton(state:1)} .onTapGesture {
+                Button {} label: {SelectorButton(state:1)} .onTapGesture{
                     yesCount += 1
-                    isMaybeShowing.toggle()
-                    isNoShowing.toggle()
-                }
+                    isMaybeShowing.toggle(); isNoShowing.toggle()
+                    isYesDisabled.toggle()
+                }.disabled(isYesDisabled)
             }
             if isMaybeShowing {
                 Button {} label: {SelectorButton(state:0)} .onTapGesture {
                     maybeCount += 1
-                    isYesShowing.toggle()
-                    isNoShowing.toggle()
-                }
+                    isYesShowing.toggle(); isNoShowing.toggle()
+                    isMaybeDisabled.toggle()
+                }.disabled(isMaybeDisabled)
             }
             if isNoShowing {
                 Button {} label: {SelectorButton(state:2)} .onTapGesture {
                     noCount += 1
-                    isYesShowing.toggle()
-                    isMaybeShowing.toggle()
-                }
+                    isYesShowing.toggle(); isMaybeShowing.toggle()
+                    isNoDisabled.toggle()
+                }.disabled(isNoDisabled)
             }
         }
     }
@@ -137,10 +140,22 @@ struct EventBallotView: View {
                     )
                 }
             }
-            Button {
-                isBallotPresented.toggle()
-            } label: {
-                Text("Cancel")
+            
+            
+            HStack {
+                Spacer()
+                Button {
+                    isBallotPresented.toggle()
+                } label: {
+                    Text("Cancel")
+                }.buttonStyle(.bordered)
+                Spacer()
+                Button {
+                    isBallotPresented.toggle()
+                } label: {
+                    Text("Submit")
+                }.buttonStyle(.borderedProminent)
+                Spacer()
             }
         }
     }
