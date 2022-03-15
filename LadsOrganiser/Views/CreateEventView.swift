@@ -31,23 +31,18 @@ struct EventForm: View {
                      "Start Date",
                      selection: $event.fromDate,
                      displayedComponents: [.date]
-                 )
-                    .onChange(of: event.fromDate){newValue in
+                 ).onChange(of: event.fromDate){newValue in
                         isValidDates = validateDatesValid(fromDate: newValue, toDate: event.toDate)
                         event.fromDate = newValue
-                        print(event.fromDate)
                 }
-                
                 
                 DatePicker(
                      "End Date",
                      selection: $event.toDate,
                      displayedComponents: [.date]
-                )
-                .onChange(of: event.toDate){newValue in
-                    isValidDates = validateDatesValid(fromDate: event.toDate, toDate: newValue)
+                ).onChange(of: event.toDate){newValue in
+                    isValidDates = validateDatesValid(fromDate: event.fromDate, toDate: newValue)
                     event.toDate = newValue
-                    print(event.toDate)
                 }
                 
                 Toggle("Weekend Only Dates?", isOn: $event.isWeekendOnly).toggleStyle(.switch)
@@ -156,7 +151,6 @@ struct CreateEventView: View {
         dataStoreEvent.toDate = event.toDate
         dataStoreEvent.isWeekendOnly = event.isWeekendOnly
         try? moc.save()
-        print("STORE")
     }
 }
 

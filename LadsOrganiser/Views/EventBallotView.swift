@@ -91,13 +91,20 @@ struct DateSelectionView: View {
 }
 
 struct TitleVote: View {
+    var title: String = String()
     var body: some View {
-        HStack {
-            Text("Vote")
-                .padding()
-                .font(.title)
-            Spacer()
-        }
+        VStack{
+            HStack {
+                Text("Vote")
+                    .font(.title)
+                Spacer()
+            }
+            HStack {
+                Text(title)
+                    .font(.title3)
+                Spacer()
+            }
+        }.padding()
     }
 }
 
@@ -110,12 +117,16 @@ struct EventBallotView: View {
     init(event: Event, toggleShowBallot: Binding<Bool>){
         displayFormat.dateFormat = DATE_FORMAT
         self.event = event
-        options = generateDateList(from: event.fromDate, to: event.toDate)
+        if event.isWeekendOnly{
+            options = generateDateList(from: event.fromDate, to: event.toDate, isWeekendsOnly: event.isWeekendOnly)
+        } else {
+            options = generateDateList(from: event.fromDate, to: event.toDate)
+        }
         self._isBallotPresented = toggleShowBallot
     }
     var body: some View {
         VStack {
-            TitleVote()
+            TitleVote(title:event.title)
             List {
                 ForEach(options, id: \.self){ option in
                     DateEntry(

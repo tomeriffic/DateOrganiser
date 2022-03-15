@@ -149,6 +149,9 @@ struct ContentView: View {
             var newEvent = Event()
             newEvent.id = e.id!
             newEvent.title = e.title!
+            newEvent.fromDate = e.fromDate!
+            newEvent.toDate = e.toDate!
+            newEvent.isWeekendOnly = e.isWeekendOnly
             castedEvents.append(newEvent)
         }
         
