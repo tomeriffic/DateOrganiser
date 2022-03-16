@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>NSContactsUsageDescription</key>
-	<string>Access to Contacts required to select participants</string>
+	<string>Access to Contacts required to select Participants</string>
 </dict>
 </plist>

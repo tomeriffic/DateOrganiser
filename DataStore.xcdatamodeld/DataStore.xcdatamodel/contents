@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21D62" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Events" representedClassName="Events" syncable="YES" codeGenerationType="class">
+        <attribute name="fromDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isWeekendOnly" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="toDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="Votes" representedClassName="Votes" syncable="YES" codeGenerationType="class">
+        <attribute name="eventId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="vote" optional="YES" attributeType="Binary"/>
+    </entity>
+    <elements>
+        <element name="Events" positionX="-250.7199096679688" positionY="129.9588012695312" width="128" height="104"/>
+        <element name="Votes" positionX="-17.9393310546875" positionY="160.8513488769531" width="128" height="74"/>
+    </elements>
+</model>
