@@ -19,6 +19,7 @@ struct Event: Hashable {
     var isWeekendOnly   : Bool          = false
     var participants    : [ContactInfo] = []
     var votes           : String        = String()
+    var options         : [Date]        = []
     // Only when state is confirmed there is a selected date
     var selectedDate    : Date          = Date()
 }

@@ -39,7 +39,7 @@ struct DateEntry: View {
                 
             }
             if ctxt.isYesShowing {
-                Button {} label: {VoteSelectorButton(state:2)} .onTapGesture{
+                Button {} label: {VoteSelectorButton(state:VoteEnum.Yes.rawValue)} .onTapGesture{
                     ctxt.yesCount += 1
                     ctxt.isMaybeShowing.toggle(); ctxt.isNoShowing.toggle()
                     ctxt.isYesDisabled.toggle()
@@ -48,7 +48,7 @@ struct DateEntry: View {
                 }.disabled(ctxt.isYesDisabled)
             }
             if ctxt.isMaybeShowing {
-                Button {} label: {VoteSelectorButton(state:1)} .onTapGesture {
+                Button {} label: {VoteSelectorButton(state: VoteEnum.Maybe.rawValue)} .onTapGesture {
                     ctxt.maybeCount += 1
                     ctxt.isYesShowing.toggle(); ctxt.isNoShowing.toggle()
                     ctxt.isMaybeDisabled.toggle()
@@ -56,7 +56,7 @@ struct DateEntry: View {
                 }.disabled(ctxt.isMaybeDisabled)
             }
             if ctxt.isNoShowing {
-                Button {} label: {VoteSelectorButton(state:3)} .onTapGesture {
+                Button {} label: {VoteSelectorButton(state: VoteEnum.No.rawValue)} .onTapGesture {
                     ctxt.noCount += 1
                     ctxt.isYesShowing.toggle(); ctxt.isMaybeShowing.toggle()
                     ctxt.isNoDisabled.toggle()

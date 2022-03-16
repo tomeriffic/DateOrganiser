@@ -10,24 +10,17 @@ import CoreData
 
 struct EventBallotView: View {
     @Binding var isBallotPresented: Bool
-    private var options: [Date] = []
     private let displayFormat = DateFormatter()
     private var event: Event = Event()
     @ObservedObject var selectionList : MyVotes
-    
     @Environment(\.managedObjectContext) var moc
     
-
     init(event: Event, toggleShowBallot: Binding<Bool>){
         displayFormat.dateFormat = DATE_FORMAT
         self.event = event
         self._isBallotPresented = toggleShowBallot
-        if event.isWeekendOnly{
-            options = generateDateList(from: event.fromDate, to: event.toDate, isWeekendsOnly: event.isWeekendOnly)
-        } else {
-            options = generateDateList(from: event.fromDate, to: event.toDate)
-        }
-        selectionList = MyVotes(values: Array(repeating: UInt8(0), count: options.count))
+        
+        selectionList = MyVotes()
         selectionList.fromString(votes: event.votes)
     }
     
@@ -42,16 +35,19 @@ struct EventBallotView: View {
     func updateVote(votesList: MyVotes) {
         let votes = try? moc.fetch(NSFetchRequest<NSFetchRequestResult>(entityName: "Votes")) as? [NSManagedObject]
         for v in votes! {
-            print(v)
+            if event.id == v.value(forKey: "eventId") as? UUID{
+                v.setValue(votesList.toString(), forKey: "vote")
+                print("UPDATING")
+                try? moc.save()
+            }
         }
     }
 
-    
     var body: some View {
         VStack {
             TitleVote(title:event.title)
             List {
-                ForEach(Array(zip(options, Array(0...selectionList.items.count))), id: \.0){ option in
+                ForEach(Array(zip(event.options, Array(0...selectionList.items.count))), id: \.0){ option in
                     DateEntry(
                         date: displayFormat.string(from: option.0),
                         index: UInt8(option.1),
@@ -70,10 +66,12 @@ struct EventBallotView: View {
                 Spacer()
                 Button {
                     isBallotPresented.toggle()
-                    if selectionList.takenFromStorage{
+                    if selectionList.takenFromStorage{ //If it's taken from storage it just needs updating, not storing again
                         updateVote(votesList: selectionList)
                     } else {
-                        storeVote(votesList: selectionList)
+                        if selectionList.hasPendingChanges(){
+                            storeVote(votesList: selectionList)
+                        }
                     }
                 } label: {
                     Text("Submit")

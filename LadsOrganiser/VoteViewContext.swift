@@ -22,18 +22,21 @@ struct VoteViewContext {
     init(){}
     
     init(vote: UInt8){
-        if vote == 0 {
+        if vote == VoteEnum.NoSelectedOption.rawValue {
             // Signifies No Vote Selected
         }
-        else if vote == 1 {
+        else if vote == VoteEnum.Maybe.rawValue {
+            maybeCount += 1
             isYesShowing = false
             isNoShowing = false
         }
-        else if vote == 2 {
+        else if vote == VoteEnum.Yes.rawValue {
+            yesCount += 1
             isMaybeShowing = false
             isNoShowing = false
         }
-        else if vote == 3 {
+        else if vote == VoteEnum.No.rawValue {
+            noCount += 1
             isYesShowing = false
             isMaybeShowing = false
         }

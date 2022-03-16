@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct VoteSelectorButton: View {
-    var state: Int8 = 0
+    var state: UInt8 = 0
     var body: some View {
         switch state {
         case 1:

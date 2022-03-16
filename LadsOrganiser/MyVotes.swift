@@ -11,8 +11,19 @@ class MyVotes: ObservableObject {
     @Published var items = [UInt8]()
     var takenFromStorage: Bool = false
 
+    init(){}
+    
     init(values: [UInt8]) {
         items = values
+    }
+    
+    func hasPendingChanges() -> Bool{
+        for i in items{
+            if i > 0 && i < 4{
+                return true
+            }
+        }
+        return false
     }
     
     func update(index: Int, value: UInt8){
