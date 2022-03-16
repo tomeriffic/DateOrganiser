@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B89467827E0FABB00946E99 /* LocalStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B89467627E0FABB00946E99 /* LocalStore.xcdatamodeld */; };
+		1B89467E27E2284F00946E99 /* UserStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B89467C27E2284F00946E99 /* UserStorage.xcdatamodeld */; };
+		1B89468027E22AF300946E99 /* CreateNewEventButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B89467F27E22AF300946E99 /* CreateNewEventButton.swift */; };
+		1B89468227E22C1900946E99 /* InviteParticipantsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B89468127E22C1900946E99 /* InviteParticipantsForm.swift */; };
+		1B89468427E22C8600946E99 /* Titles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B89468327E22C8600946E99 /* Titles.swift */; };
+		1B89468627E22D2900946E99 /* MyVotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B89468527E22D2900946E99 /* MyVotes.swift */; };
 		1BCB24DD27DD111E009826E8 /* LadsOrganiserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB24DC27DD111E009826E8 /* LadsOrganiserApp.swift */; };
 		1BCB24DF27DD111E009826E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB24DE27DD111E009826E8 /* ContentView.swift */; };
 		1BCB24E127DD1120009826E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BCB24E027DD1120009826E8 /* Assets.xcassets */; };
@@ -43,7 +47,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1B89467727E0FABB00946E99 /* LocalStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalStore.xcdatamodel; sourceTree = "<group>"; };
+		1B89467D27E2284F00946E99 /* UserStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStorage.xcdatamodel; sourceTree = "<group>"; };
+		1B89467F27E22AF300946E99 /* CreateNewEventButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEventButton.swift; sourceTree = "<group>"; };
+		1B89468127E22C1900946E99 /* InviteParticipantsForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteParticipantsForm.swift; sourceTree = "<group>"; };
+		1B89468327E22C8600946E99 /* Titles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Titles.swift; sourceTree = "<group>"; };
+		1B89468527E22D2900946E99 /* MyVotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVotes.swift; sourceTree = "<group>"; };
 		1BCB24D927DD111E009826E8 /* LadsOrganiser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LadsOrganiser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BCB24DC27DD111E009826E8 /* LadsOrganiserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LadsOrganiserApp.swift; sourceTree = "<group>"; };
 		1BCB24DE27DD111E009826E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -93,7 +101,7 @@
 		1BCB24D027DD111E009826E8 = {
 			isa = PBXGroup;
 			children = (
-				1B89467627E0FABB00946E99 /* LocalStore.xcdatamodeld */,
+				1B89467C27E2284F00946E99 /* UserStorage.xcdatamodeld */,
 				1BCB24DB27DD111E009826E8 /* LadsOrganiser */,
 				1BCB24EC27DD1120009826E8 /* LadsOrganiserTests */,
 				1BCB24F627DD1120009826E8 /* LadsOrganiserUITests */,
@@ -124,6 +132,8 @@
 				1BCB251127DE4D85009826E8 /* Event.swift */,
 				1BCB251327DE50AA009826E8 /* EventState.swift */,
 				1BCB251B27DF795D009826E8 /* DataController.swift */,
+				1B89468527E22D2900946E99 /* MyVotes.swift */,
+				1B89467F27E22AF300946E99 /* CreateNewEventButton.swift */,
 			);
 			path = LadsOrganiser;
 			sourceTree = "<group>";
@@ -160,6 +170,8 @@
 				1BCB250F27DE3DFA009826E8 /* ContactRowView.swift */,
 				1BCB250D27DE236A009826E8 /* ContactView.swift */,
 				1BCB250827DD61BC009826E8 /* EventBallotView.swift */,
+				1B89468127E22C1900946E99 /* InviteParticipantsForm.swift */,
+				1B89468327E22C8600946E99 /* Titles.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -298,13 +310,17 @@
 				1BCB250B27DD7272009826E8 /* Utils.swift in Sources */,
 				1BCB250E27DE236A009826E8 /* ContactView.swift in Sources */,
 				1BCB251027DE3DFA009826E8 /* ContactRowView.swift in Sources */,
+				1B89468427E22C8600946E99 /* Titles.swift in Sources */,
+				1B89467E27E2284F00946E99 /* UserStorage.xcdatamodeld in Sources */,
+				1B89468627E22D2900946E99 /* MyVotes.swift in Sources */,
 				1BCB250727DD1A28009826E8 /* CreateEventView.swift in Sources */,
 				1BCB251C27DF795D009826E8 /* DataController.swift in Sources */,
 				1BCB251427DE50AA009826E8 /* EventState.swift in Sources */,
 				1BCB250927DD61BC009826E8 /* EventBallotView.swift in Sources */,
+				1B89468027E22AF300946E99 /* CreateNewEventButton.swift in Sources */,
 				1BCB24DF27DD111E009826E8 /* ContentView.swift in Sources */,
+				1B89468227E22C1900946E99 /* InviteParticipantsForm.swift in Sources */,
 				1BCB24DD27DD111E009826E8 /* LadsOrganiserApp.swift in Sources */,
-				1B89467827E0FABB00946E99 /* LocalStore.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,13 +653,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		1B89467627E0FABB00946E99 /* LocalStore.xcdatamodeld */ = {
+		1B89467C27E2284F00946E99 /* UserStorage.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				1B89467727E0FABB00946E99 /* LocalStore.xcdatamodel */,
+				1B89467D27E2284F00946E99 /* UserStorage.xcdatamodel */,
 			);
-			currentVersion = 1B89467727E0FABB00946E99 /* LocalStore.xcdatamodel */;
-			path = LocalStore.xcdatamodeld;
+			currentVersion = 1B89467D27E2284F00946E99 /* UserStorage.xcdatamodel */;
+			path = UserStorage.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

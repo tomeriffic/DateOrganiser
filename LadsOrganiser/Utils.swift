@@ -36,7 +36,6 @@ class FetchContacts {
     }
 }
 
-
 func validateDatesValid(fromDate: Date, toDate: Date) -> Bool{
     if fromDate >= toDate {
         print("FAILED")
@@ -44,7 +43,6 @@ func validateDatesValid(fromDate: Date, toDate: Date) -> Bool{
     }
     return true
 }
-
 
 func generateDateList(from: Date, to: Date) -> [Date]{
     var listOfDates: [Date] = []

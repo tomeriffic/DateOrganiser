@@ -23,33 +23,12 @@ struct LogoArea: View {
     }
 }
 
-struct TitleEvents: View {
-    var body: some View {
-        HStack {
-            Text("Events")
-                .font(.title2)
-                .padding()
-            Spacer()
-        }
-    }
-}
-
-struct ColumnNames: View {
-    var body: some View {
-        HStack {
-            Text("Title")
-            Text("Confirmed")
-            Text("Attendees")
-            Text("Date")
-        }
-    }
-}
-
 struct EventRowEntry: View {
     private var event: Event
     private var df = DateFormatter()
     @State private var isPresentingVoteView: Bool = false
     @FetchRequest(sortDescriptors: []) var newEvents: FetchedResults<Events>
+    @FetchRequest(sortDescriptors: []) var votes: FetchedResults<Votes>
     @Environment(\.managedObjectContext) var moc
     
     init(){
@@ -70,10 +49,19 @@ struct EventRowEntry: View {
                 index = i
             }
         }
-        
         let user = newEvents[index]
         moc.delete(user)
         try? moc.save()
+        
+        
+        for (v, element) in votes.enumerated() {
+            if id == element.eventId{
+                let vote = votes[v]
+                moc.delete(vote)
+                try? moc.save()
+                print("DELETEING VOTE")
+            }
+        }
     }
     
     var body: some View {
@@ -106,36 +94,25 @@ struct EventRowEntry: View {
     }
 }
 
-struct NewEventButton: View {
-    @Binding var action: Bool
-    var body: some View {
-        Button{
-            action.toggle()
-        } label:{
-            Label("New Event", systemImage: "calendar.badge.plus")
-        }
-    }
-}
-
 struct ContentView: View {
     @State private var action: Int? = 0
     @State private var isPresentingCreateEvent = false
     @FetchRequest(sortDescriptors: []) var newEvents: FetchedResults<Events>
+    @FetchRequest(sortDescriptors: []) var votes: FetchedResults<Votes>
     @Environment(\.managedObjectContext) var moc
     
     var body: some View {
         VStack {
             LogoArea()
             TitleEvents()
-            //ColumnNames()
             Form {
-                ForEach(castEvent(events: newEvents), id: \.self) { event in
+                ForEach(castEvent(events: newEvents, votes: votes), id: \.self) { event in
                     EventRowEntry(event: event)
                 }
                 if newEvents.count == 0{
                     Text("You have no events.")
                 }
-                NewEventButton(action: $isPresentingCreateEvent)
+                CreateNewEventButton(action: $isPresentingCreateEvent)
             }
         }
         .fullScreenCover(isPresented: $isPresentingCreateEvent){
@@ -143,19 +120,28 @@ struct ContentView: View {
         }
     }
     
-    func castEvent(events: FetchedResults<Events>) -> [Event] {
+    func castEvent(events: FetchedResults<Events>, votes: FetchedResults<Votes>) -> [Event] {
         var castedEvents: [Event] = []
-        for e in events{
+        
+        for e in events {
             var newEvent = Event()
             newEvent.id = e.id!
             newEvent.title = e.title!
             newEvent.fromDate = e.fromDate!
             newEvent.toDate = e.toDate!
             newEvent.isWeekendOnly = e.isWeekendOnly
+            
+            for v in votes {
+                if v.eventId == e.id!{
+                    newEvent.votes = v.vote!
+                }
+            }
+            
             castedEvents.append(newEvent)
         }
         
         print("\(events.count)")
+        print("Votes: \(votes.count)")
         return castedEvents
     }
 }

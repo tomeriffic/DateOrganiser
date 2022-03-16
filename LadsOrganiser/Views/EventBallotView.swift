@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SelectorButton: View {
     var state: Int8 = 0
@@ -60,9 +61,9 @@ struct DateEntry: View {
     var date: String = "0/0/0000"
     var index: UInt8
     @State var ctxt: VoteContext
-    var selectionList: GetVotes
+    var selectionList: MyVotes
 
-    init(date: String, index: UInt8, selectionList: GetVotes){
+    init(date: String, index: UInt8, selectionList: MyVotes){
         self.date = date
         self.index = index
         self.ctxt = VoteContext(vote: selectionList.items[Int(index)])
@@ -133,36 +134,13 @@ struct TitleVote: View {
     }
 }
 
-class GetVotes: ObservableObject {
-    @Published var items = [UInt8]()
-
-    init(values: [UInt8]) {
-        items = values
-    }
-    
-    func update(index: Int, value: UInt8){
-        items[index] = value
-    }
-    
-    func toString() -> String{
-        return items.description
-    }
-    
-    func fromString(votes: String){
-        let sArray = votes
-                      .trimmingCharacters(in: CharacterSet(charactersIn: "[]"))
-                      .components(separatedBy:",").map({ UInt8($0)! })
-        items = sArray
-    }
-}
-
 struct EventBallotView: View {
     @Binding var isBallotPresented: Bool
     private var options: [Date] = []
     private let displayFormat = DateFormatter()
     private var event: Event = Event()
-    @ObservedObject var selectionList : GetVotes
-    @FetchRequest(sortDescriptors: []) var votes: FetchedResults<Votes>
+    @ObservedObject var selectionList : MyVotes
+    
     @Environment(\.managedObjectContext) var moc
     
 
@@ -175,18 +153,23 @@ struct EventBallotView: View {
         } else {
             options = generateDateList(from: event.fromDate, to: event.toDate)
         }
-        selectionList = GetVotes(values: Array(repeating: UInt8(0), count: options.count))
+        selectionList = MyVotes(values: Array(repeating: UInt8(0), count: options.count))
+        selectionList.fromString(votes: event.votes)
     }
     
-    func StoreVote(votesList: GetVotes){
-        print(votesList)
-        
+    func storeVote(votesList: MyVotes){
         let dataStoreEvent = Votes(context: moc)
         dataStoreEvent.id = UUID()
         dataStoreEvent.eventId = event.id
         dataStoreEvent.vote = votesList.toString()
-        print(dataStoreEvent.vote)
-        //try? moc.save()
+        try? moc.save()
+    }
+    
+    func updateVote(votesList: MyVotes) {
+        let votes = try? moc.fetch(NSFetchRequest<NSFetchRequestResult>(entityName: "Votes")) as? [NSManagedObject]
+        for v in votes! {
+            print(v)
+        }
     }
 
     
@@ -213,13 +196,19 @@ struct EventBallotView: View {
                 Spacer()
                 Button {
                     isBallotPresented.toggle()
-                    StoreVote(votesList: selectionList)
+                    if selectionList.takenFromStorage{
+                        updateVote(votesList: selectionList)
+                    } else {
+                        storeVote(votesList: selectionList)
+                    }
                 } label: {
                     Text("Submit")
                 }.buttonStyle(.borderedProminent)
                 Spacer()
             }
-        }
+        }.onAppear(perform: {
+            
+        })
     }
 }
 
