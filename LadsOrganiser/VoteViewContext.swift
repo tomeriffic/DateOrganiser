@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct VoteContext {
+struct VoteViewContext {
     var yesCount: Int8 = 0
     var maybeCount: Int8 = 0
     var noCount: Int8 = 0

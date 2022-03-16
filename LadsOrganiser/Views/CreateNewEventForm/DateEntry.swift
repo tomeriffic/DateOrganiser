@@ -11,13 +11,13 @@ import SwiftUI
 struct DateEntry: View {
     var date: String = "0/0/0000"
     var index: UInt8
-    @State var ctxt: VoteContext
+    @State var ctxt: VoteViewContext
     var selectionList: MyVotes
 
     init(date: String, index: UInt8, selectionList: MyVotes){
         self.date = date
         self.index = index
-        self.ctxt = VoteContext(vote: selectionList.items[Int(index)])
+        self.ctxt = VoteViewContext(vote: selectionList.items[Int(index)])
         self.selectionList = selectionList
     }
 
