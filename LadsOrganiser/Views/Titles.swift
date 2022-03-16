@@ -29,3 +29,21 @@ struct TitleEvents: View {
         }
     }
 }
+
+struct TitleVote: View {
+    var title: String = String()
+    var body: some View {
+        VStack{
+            HStack {
+                Text("Vote")
+                    .font(.title)
+                Spacer()
+            }
+            HStack {
+                Text(title)
+                    .font(.title3)
+                Spacer()
+            }
+        }.padding()
+    }
+}

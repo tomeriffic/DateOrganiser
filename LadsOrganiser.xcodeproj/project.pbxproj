@@ -12,6 +12,9 @@
 		1B89468227E22C1900946E99 /* InviteParticipantsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B89468127E22C1900946E99 /* InviteParticipantsForm.swift */; };
 		1B89468427E22C8600946E99 /* Titles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B89468327E22C8600946E99 /* Titles.swift */; };
 		1B89468627E22D2900946E99 /* MyVotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B89468527E22D2900946E99 /* MyVotes.swift */; };
+		1B89468827E22E7C00946E99 /* SelectorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B89468727E22E7C00946E99 /* SelectorButton.swift */; };
+		1B89468B27E22F9500946E99 /* VoteContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B89468A27E22F9500946E99 /* VoteContext.swift */; };
+		1B89468D27E2317800946E99 /* DateEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B89468C27E2317800946E99 /* DateEntry.swift */; };
 		1BCB24DD27DD111E009826E8 /* LadsOrganiserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB24DC27DD111E009826E8 /* LadsOrganiserApp.swift */; };
 		1BCB24DF27DD111E009826E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB24DE27DD111E009826E8 /* ContentView.swift */; };
 		1BCB24E127DD1120009826E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BCB24E027DD1120009826E8 /* Assets.xcassets */; };
@@ -52,6 +55,9 @@
 		1B89468127E22C1900946E99 /* InviteParticipantsForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteParticipantsForm.swift; sourceTree = "<group>"; };
 		1B89468327E22C8600946E99 /* Titles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Titles.swift; sourceTree = "<group>"; };
 		1B89468527E22D2900946E99 /* MyVotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVotes.swift; sourceTree = "<group>"; };
+		1B89468727E22E7C00946E99 /* SelectorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorButton.swift; sourceTree = "<group>"; };
+		1B89468A27E22F9500946E99 /* VoteContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteContext.swift; sourceTree = "<group>"; };
+		1B89468C27E2317800946E99 /* DateEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateEntry.swift; sourceTree = "<group>"; };
 		1BCB24D927DD111E009826E8 /* LadsOrganiser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LadsOrganiser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BCB24DC27DD111E009826E8 /* LadsOrganiserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LadsOrganiserApp.swift; sourceTree = "<group>"; };
 		1BCB24DE27DD111E009826E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +104,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B89468927E22EAE00946E99 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				1B89468727E22E7C00946E99 /* SelectorButton.swift */,
+				1B89467F27E22AF300946E99 /* CreateNewEventButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		1B89468E27E231B500946E99 /* CreateNewEventForm */ = {
+			isa = PBXGroup;
+			children = (
+				1B89468127E22C1900946E99 /* InviteParticipantsForm.swift */,
+				1BCB250627DD1A28009826E8 /* CreateEventView.swift */,
+				1B89468C27E2317800946E99 /* DateEntry.swift */,
+				1BCB250F27DE3DFA009826E8 /* ContactRowView.swift */,
+			);
+			path = CreateNewEventForm;
+			sourceTree = "<group>";
+		};
 		1BCB24D027DD111E009826E8 = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +148,7 @@
 		1BCB24DB27DD111E009826E8 /* LadsOrganiser */ = {
 			isa = PBXGroup;
 			children = (
+				1B89468927E22EAE00946E99 /* Buttons */,
 				1BCB251527DEA05F009826E8 /* Views */,
 				1BCB250C27DE109D009826E8 /* Info.plist */,
 				1BCB24DC27DD111E009826E8 /* LadsOrganiserApp.swift */,
@@ -133,7 +160,7 @@
 				1BCB251327DE50AA009826E8 /* EventState.swift */,
 				1BCB251B27DF795D009826E8 /* DataController.swift */,
 				1B89468527E22D2900946E99 /* MyVotes.swift */,
-				1B89467F27E22AF300946E99 /* CreateNewEventButton.swift */,
+				1B89468A27E22F9500946E99 /* VoteContext.swift */,
 			);
 			path = LadsOrganiser;
 			sourceTree = "<group>";
@@ -166,11 +193,9 @@
 		1BCB251527DEA05F009826E8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1BCB250627DD1A28009826E8 /* CreateEventView.swift */,
-				1BCB250F27DE3DFA009826E8 /* ContactRowView.swift */,
+				1B89468E27E231B500946E99 /* CreateNewEventForm */,
 				1BCB250D27DE236A009826E8 /* ContactView.swift */,
 				1BCB250827DD61BC009826E8 /* EventBallotView.swift */,
-				1B89468127E22C1900946E99 /* InviteParticipantsForm.swift */,
 				1B89468327E22C8600946E99 /* Titles.swift */,
 			);
 			path = Views;
@@ -310,14 +335,17 @@
 				1BCB250B27DD7272009826E8 /* Utils.swift in Sources */,
 				1BCB250E27DE236A009826E8 /* ContactView.swift in Sources */,
 				1BCB251027DE3DFA009826E8 /* ContactRowView.swift in Sources */,
+				1B89468D27E2317800946E99 /* DateEntry.swift in Sources */,
 				1B89468427E22C8600946E99 /* Titles.swift in Sources */,
 				1B89467E27E2284F00946E99 /* UserStorage.xcdatamodeld in Sources */,
 				1B89468627E22D2900946E99 /* MyVotes.swift in Sources */,
+				1B89468B27E22F9500946E99 /* VoteContext.swift in Sources */,
 				1BCB250727DD1A28009826E8 /* CreateEventView.swift in Sources */,
 				1BCB251C27DF795D009826E8 /* DataController.swift in Sources */,
 				1BCB251427DE50AA009826E8 /* EventState.swift in Sources */,
 				1BCB250927DD61BC009826E8 /* EventBallotView.swift in Sources */,
 				1B89468027E22AF300946E99 /* CreateNewEventButton.swift in Sources */,
+				1B89468827E22E7C00946E99 /* SelectorButton.swift in Sources */,
 				1BCB24DF27DD111E009826E8 /* ContentView.swift in Sources */,
 				1B89468227E22C1900946E99 /* InviteParticipantsForm.swift in Sources */,
 				1BCB24DD27DD111E009826E8 /* LadsOrganiserApp.swift in Sources */,
