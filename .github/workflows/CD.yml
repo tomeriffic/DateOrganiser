@@ -21,7 +21,7 @@ jobs:
         cd Infra
         cd aws-python-http-api-vote-store
       
-      working-directory: Infra/aws-python-http-api-vote-store
+      working-directory: ./Infra/aws-python-http-api-vote-store
 
     - name: Serverless
       uses: serverless/github-action@v1.53.0
