@@ -29,5 +29,5 @@ jobs:
       run: |
         pwd
         npm i -g serverless
-        serverless --org=tomeriffic --stage=dev deploy
+        serverless --stage=dev deploy
 
