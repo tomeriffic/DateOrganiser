@@ -1,9 +1,13 @@
+"""Get a list of Votes for a specific event"""
 import json
 
 
 def main(event, context):
+    """
+    Get a list of Votes for a specific event
+    """
     body = {
-        "message": "Go Serverless v3.0! Your function executed successfully!",
+        "message": "GET Request is success",
         "input": event,
     }
 
