@@ -3,7 +3,19 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+
+  swift-build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: swift build -v
+    - name: Run tests
+      run: swift test -v
+  
+  infra-build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
