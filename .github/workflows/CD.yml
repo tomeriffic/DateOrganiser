@@ -10,7 +10,7 @@ on:
 defaults:
   run:
     shell: bash
-    working-directory: ./Infra/aws-python-http-api-vote-store
+    working-directory: ./Infra
 
 jobs:
   serverless:
