@@ -1,0 +1,21 @@
+name: 'CD'
+
+on:
+  push:
+    branches:
+    - dev
+  pull_request:
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Serverless
+      uses: serverless/github-action@v1.53.0
+
