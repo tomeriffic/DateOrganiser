@@ -27,6 +27,6 @@ jobs:
     - name: Serverless Deploy
       run: |
         pwd
-        npm i -g serverless@1.53.0
+        npm i -g serverless
         serverless --org=tomeriffic deploy
 
