@@ -25,6 +25,7 @@ jobs:
       uses: serverless/github-action@v1.53.0
       with:
         args: deploy
+        working-directory: Infra/aws-python-http-api-vote-store
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
