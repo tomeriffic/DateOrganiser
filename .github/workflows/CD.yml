@@ -15,6 +15,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+  
+    - name: Change to Infra Directory
+      run: |
+        cd Infra
+        cd aws-python-http-api-vote-store
 
     - name: Serverless
       uses: serverless/github-action@v1.53.0
