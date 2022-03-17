@@ -3,7 +3,17 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+
+  #swift-build:
+  #  runs-on: macos-latest
+  #  steps:
+  #  - uses: actions/checkout@v2
+  #  - name: Build
+  #    run: swift build -v
+  #  - name: Run tests
+  #    run: swift test -v
+  
+  infra-build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -27,4 +37,4 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')
+        pylint --fail-under=5 $(git ls-files '*.py')
