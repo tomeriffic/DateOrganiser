@@ -32,6 +32,7 @@ class MyVotes: ObservableObject {
     
     func toString() -> String{
         return items.description
+            .trimmingCharacters(in: CharacterSet(charactersIn: "[]")).replacingOccurrences(of: " ", with: "")
     }
     
     func strToIntMap(str: String) -> UInt8 {

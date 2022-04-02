@@ -8,9 +8,11 @@
 import Foundation
 import SwiftUI
 
+
 let APP_NAME = "Organiser"
 let DATE_FORMAT = "E dd/MM/yyyy"
 let DATE_FORMAT_T = "dd/MM/yyyy HH:mm"
+let DATE_FORMAT_AWS = "dd/MM/yyyy"
 
 struct LogoArea: View {
     var body: some View {
@@ -19,6 +21,45 @@ struct LogoArea: View {
                 .padding()
                 .font(.title)
             Spacer()
+        }
+    }
+}
+
+struct AddEventViaCodeButton: View {
+    @State var isShowingAlert: Bool = false
+    @State var eventId: String = String()
+    @Environment(\.managedObjectContext) var moc
+    
+    func storeEvent(event: Event){
+        let dataStoreEvent = Events(context: moc)
+        dataStoreEvent.id = event.id
+        dataStoreEvent.title = event.title
+        dataStoreEvent.fromDate = event.fromDate
+        dataStoreEvent.toDate = event.toDate
+        dataStoreEvent.isWeekendOnly = event.isWeekendOnly
+        try? moc.save()
+    }
+    
+    var body: some View {
+        Button{
+            isShowingAlert.toggle()
+        } label:{
+            Label("Add Event via Code", systemImage: "pencil")
+        }
+        .popover(isPresented: $isShowingAlert){
+            VStack{
+                Text("Enter Event Code")
+                TextField("00000000-0000-0000-0000-000000000000", text: $eventId)
+                Button("Submit", role: .cancel) {
+                    isShowingAlert.toggle()
+                    //TODO: Get from DB
+                    var data = AWSGetEvents(eventId: eventId)
+                    //TODO: Store to Local
+                    var event = Event()
+                    event.id = UUID(uuidString: eventId)!
+                    storeEvent(event: event)
+                }
+            }
         }
     }
 }
@@ -42,6 +83,7 @@ struct ContentView: View {
                     Text("You have no events.")
                 }
                 CreateNewEventButton(action: $isPresentingCreateEvent)
+                AddEventViaCodeButton()
             }
         }
         .fullScreenCover(isPresented: $isPresentingCreateEvent){
@@ -60,6 +102,12 @@ struct ContentView: View {
             newEvent.toDate = e.toDate!
             newEvent.isWeekendOnly = e.isWeekendOnly
             
+            if e.isWeekendOnly{
+                newEvent.options = generateDateList(from: e.fromDate!, to: e.toDate!, isWeekendsOnly: e.isWeekendOnly)
+            } else {
+                newEvent.options = generateDateList(from: e.fromDate!, to: e.toDate!)
+            }
+            
             for v in votes {
                 if v.eventId == e.id!{
                     newEvent.votes = v.vote!
@@ -67,13 +115,6 @@ struct ContentView: View {
             }
             if newEvent.votes.isEmpty {
                 newEvent.votes = MyVotes(values: Array(repeating: UInt8(0), count: newEvent.options.count)).toString()
-            }
-            
-            
-            if e.isWeekendOnly{
-                newEvent.options = generateDateList(from: e.fromDate!, to: e.toDate!, isWeekendsOnly: e.isWeekendOnly)
-            } else {
-                newEvent.options = generateDateList(from: e.fromDate!, to: e.toDate!)
             }
             
             castedEvents.append(newEvent)

@@ -22,6 +22,8 @@ struct EventBallotView: View {
         
         selectionList = MyVotes()
         selectionList.fromString(votes: event.votes)
+        var dbVotes = AWSGetVotes(eventId: event.id.uuidString)
+        print(".")
     }
     
     func storeVote(votesList: MyVotes){
@@ -30,6 +32,8 @@ struct EventBallotView: View {
         dataStoreEvent.eventId = event.id
         dataStoreEvent.vote = votesList.toString()
         try? moc.save()
+        
+        AWSStoreVote(eventId: event.id.uuidString, id: dataStoreEvent.id!.uuidString, vote: selectionList.toString())
     }
     
     func updateVote(votesList: MyVotes) {
@@ -39,6 +43,9 @@ struct EventBallotView: View {
                 v.setValue(votesList.toString(), forKey: "vote")
                 print("UPDATING")
                 try? moc.save()
+                
+                let voter_id = v.value(forKey: "id") as? UUID
+                AWSPatchVote(eventId: event.id.uuidString, id: voter_id!.uuidString, vote: votesList.toString())
             }
         }
     }

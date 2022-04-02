@@ -64,6 +64,7 @@ struct CreateEventView: View {
                 
                 Button("Send Invites and Create"){
                     storeEvent(event: event)
+                    AWSStoreEvent(event: event)
                     openClose.toggle()
                     
                 }.buttonStyle(.borderedProminent)

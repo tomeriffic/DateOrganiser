@@ -16,10 +16,10 @@ struct EventRowEntry: View {
     @FetchRequest(sortDescriptors: []) var votes: FetchedResults<Votes>
     @Environment(\.managedObjectContext) var moc
     
-    init(){
-        df.dateFormat = DATE_FORMAT
-        event = Event()
-    }
+    //init(){
+    //    df.dateFormat = DATE_FORMAT
+    //    event = Event()
+    //}
     
     init(event: Event){
         df.dateFormat = DATE_FORMAT
