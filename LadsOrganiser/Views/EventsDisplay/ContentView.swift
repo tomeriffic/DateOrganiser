@@ -53,11 +53,17 @@ struct AddEventViaCodeButton: View {
                 Button("Submit", role: .cancel) {
                     isShowingAlert.toggle()
                     //TODO: Get from DB
-                    var data = AWSGetEvents(eventId: eventId)
-                    //TODO: Store to Local
-                    var event = Event()
-                    event.id = UUID(uuidString: eventId)!
-                    storeEvent(event: event)
+                    AWSServices.shared.AWSGetEvents(eventId: eventId) { (result) in
+                        switch result {
+                        case .success(let event):
+                            storeEvent(event: event)
+                        
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                            
+                        }
+                        
+                    }
                 }
             }
         }
